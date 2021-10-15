@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class Login extends React.Component {
+  handleLogin = () => {
+    // history is passed by Route
+    this.props.history.push('/home')
+  }
   render() {
     return (
       <div>
         <p>Login: </p>
+        <button onClick={this.handleLogin}>Login</button>
       </div>
     )
   }
@@ -30,11 +35,13 @@ const App = () => {
     <Router>
       <div>
         <h1>React Router</h1>
-
+        <Link to='/login'>login page</Link>
+        {/*  path is the route rule, React route(by default) is not exact match rule  */}
         <Route path='/login' component={Login}></Route>
+        {/* <Route path='/home' component={Home}></Route> */}
 
-        {/* Default route, exact set the route need to be exact match */}
-        <Route exact path='/' component={Home}></Route>
+        {/* Default route */}
+        <Route path='/' component={Home}></Route>
       </div>
     </Router>
   )
